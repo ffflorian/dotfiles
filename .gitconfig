@@ -1,0 +1,20 @@
+[user]
+	email = github@floriankeller.de
+	name = Florian Keller
+    signingkey = 0xBDA00C34
+[color]
+	ui = true
+[core]
+    excludesfile = /home/florian/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[alias]
+    patch = !git --no-pager diff --no-color
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[alias]
+    patch = !git --no-pager diff --no-color
