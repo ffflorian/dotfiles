@@ -92,6 +92,17 @@ function wttr() {
   curl -4 -s http://wttr.in/Berlin #| head -7 | tail -5"
 }
 
+function gupdate() {
+  COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
+  git reset HEAD~1
+  git add .
+  git stash
+  git pull
+  git stash pop
+  git add .
+  git commit -S -m "${COMMIT_MESSAGE}"
+}
+
 function biggest() {
   if [[ $# -eq 0 ]] ; then
     du -hd1 | sort -rh | tail -n +2
