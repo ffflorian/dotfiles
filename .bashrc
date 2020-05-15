@@ -122,6 +122,8 @@ unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export DENO_INSTALL="/home/florian/.deno"
+
 PATH="${HOME}/bin:${PATH}"
 PATH="${HOME}/.local/bin/:${PATH}"
 PATH="/usr/sbin:${PATH}"
@@ -130,6 +132,7 @@ PATH="${NODE_BIN}:${PATH}"
 PATH="${HOME}/.yarn/bin:${PATH}"
 PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.gem/ruby/2.3.0/bin:${PATH}"
+PATH="${DENO_INSTALL}/bin:${PATH}"
 PATH="/home/florian/git/emsdk:/home/florian/git/emsdk/fastcomp/emscripten:${PATH}"
 #/home/florian/git/emsdk/node/12.9.1_64bit/bin
 
