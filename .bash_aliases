@@ -42,7 +42,7 @@ alias upgrade-all="upd && upgr; \
                    ~/bin/thunderbird-update.sh; \
                    ~/bin/firefox-update.sh; \
                    ~/bin/nvm-update.sh; \
-                   nvm i 12; \
+                   nvm i 14; \
                    npm i -g npm crates-updater electron-info; \
                    exercism upgrade; \
                    rustup update; \
