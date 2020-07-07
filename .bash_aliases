@@ -130,10 +130,10 @@ function gpushb() {
 function gdel() {
   REMOTE="origin"
   BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-  if [ "${BRANCH}" == "master" ]; then
-    echo "Already on master branch."
+  if [ "${BRANCH}" == "main" ]; then
+    echo "Already on main branch."
   else
-    git checkout master
+    git checkout main
     git branch -D "${BRANCH}"
     git pull --prune
   fi
