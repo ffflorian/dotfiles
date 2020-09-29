@@ -14,5 +14,9 @@ set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set nomodeline      " Disable modelines
 
+
 syntax on
 :color slate
+
+" Remap :X to :x
+cnoremap <expr> X (getcmdtype() is# ':' && empty(getcmdline())) ? 'x' : 'X'
