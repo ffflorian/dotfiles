@@ -125,7 +125,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export DENO_INSTALL="/home/florian/.deno"
 
 PATH="${HOME}/bin:${PATH}"
-PATH="${HOME}/.local/bin/:${PATH}"
+PATH="${HOME}/.local/bin:${PATH}"
 PATH="/usr/sbin:${PATH}"
 PATH="${NPM_PACKAGES}/bin:${PATH}"
 PATH="${NODE_BIN}:${PATH}"

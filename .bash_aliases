@@ -112,6 +112,12 @@ function biggest() {
   fi
 }
 
+function json_prettyprint() {
+  FILENAME="${1%.*}"
+  EXTENSION="${1##*.}"
+  cat "${1}" | python -mjson.tool > "${FILENAME}_beautified.${EXTENSION}"
+}
+
 function debchangelog() {
   zless "/usr/share/doc/${1}/changelog.Debian.gz"
 }
