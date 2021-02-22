@@ -45,7 +45,8 @@ URxvt.background: rgba:0000/0000/0000/eeee
 
 URxvt.letterSpace: -1.5
 ! URxvt.font: xft:Source Code Pro:pixelsize=20, xft:Noto Color Emoji
-URxvt.font: xft:Source Code Pro:pixelsize=13, xft:Noto Color Emoji
+! URxvt.font: xft:Source Code Pro:pixelsize=13, xft:Noto Color Emoji
+URxvt.font: xft:JetBrains Mono:pixelsize=13, xft:Noto Color Emoji
 
 URxvt.scrollBar: True
 URxvt.scrollstyle: plain
