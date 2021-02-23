@@ -43,7 +43,7 @@ alias upgrade-all="upd && upgr; \
                    ~/bin/firefox-update.sh; \
                    ~/bin/nvm-update.sh; \
                    nvm i 14; \
-                   npm i -g npm crates-updater electron-info; \
+                   npm i -g npm yarn generate-changelog electron-info; \
                    exercism upgrade; \
                    rustup update; \
                    g self-upgrade && \
