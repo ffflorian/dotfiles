@@ -18,3 +18,5 @@
   whitespace = red reverse
 [alias]
   patch = !git --no-pager diff --no-color
+[pull]
+	rebase = false
