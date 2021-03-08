@@ -133,7 +133,7 @@ PATH="${HOME}/.yarn/bin:${PATH}"
 PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.gem/ruby/2.3.0/bin:${PATH}"
 PATH="${DENO_INSTALL}/bin:${PATH}"
-PATH="/home/florian/git/emsdk:/home/florian/git/emsdk/fastcomp/emscripten:${PATH}"
-#/home/florian/git/emsdk/node/12.9.1_64bit/bin
+PATH="/home/florian/src/emsdk:/home/florian/src/emsdk/fastcomp/emscripten:${PATH}"
+#/home/florian/src/emsdk/node/12.9.1_64bit/bin
 
 export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g

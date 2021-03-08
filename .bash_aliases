@@ -24,7 +24,7 @@ alias upd="sudo apt update -qq"
 alias upgr="sudo apt upgrade"
 alias upgrd="sudo apt dist-upgrade"
 alias google-chrome-unsafe="google-chrome --disable-web-security --user-data-dir=\"/tmp/ChromeDevSession\""
-alias wire-upgrade="cd ~/git/wire/wire-desktop && \
+alias wire-upgrade="cd ~/src/wire/wire-desktop && \
                     git add . && \
                     git reset --hard && \
                     git checkout dev && \
@@ -39,8 +39,6 @@ alias wp="ps aux | grep -v grep | grep"
 alias xclip="xclip -selection c"
 alias upgrade-all="upd && upgr; \
                    sudo apt-get autoremove; \
-                   ~/bin/thunderbird-update.sh; \
-                   ~/bin/firefox-update.sh; \
                    ~/bin/nvm-update.sh; \
                    nvm i 14; \
                    npm i -g npm yarn generate-changelog electron-info; \
