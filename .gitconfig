@@ -1,22 +1,25 @@
 [user]
-  email = git@ffflorian.de
-  name = Florian Imdahl
-  signingkey = 0xBDA00C34
+    email = git@ffflorian.de
+    name = Florian Imdahl
+    signingkey = 0xBDA00C34
 [color]
-  ui = true
+    ui = true
 [core]
-  excludesfile = /home/florian/.gitignore_global
-  pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = false
+    eol = lf
+    excludesfile = /home/florian/.gitignore_global
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
 [alias]
-  patch = !git --no-pager diff --no-color
+    patch = !git --no-pager diff --no-color
 [color "diff"]
-  meta = yellow
-  frag = magenta bold
-  commit = yellow bold
-  old = red bold
-  new = green bold
-  whitespace = red reverse
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [alias]
-  patch = !git --no-pager diff --no-color
+    patch = !git --no-pager diff --no-color
 [pull]
-	rebase = false
+    rebase = false
