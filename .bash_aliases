@@ -40,7 +40,7 @@ alias xclip="xclip -selection c"
 alias upgrade-all="upd && upgr; \
                    sudo apt-get autoremove; \
                    ~/bin/nvm-update.sh; \
-                   nvm i 14; \
+                   nvm i 15; \
                    npm i -g npm yarn generate-changelog electron-info; \
                    exercism upgrade; \
                    rustup update; \

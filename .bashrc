@@ -137,3 +137,4 @@ PATH="/home/florian/src/emsdk:/home/florian/src/emsdk/fastcomp/emscripten:${PATH
 #/home/florian/src/emsdk/node/12.9.1_64bit/bin
 
 export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+source "$HOME/.cargo/env"
