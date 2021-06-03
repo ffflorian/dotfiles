@@ -7,7 +7,7 @@ alias conn="sudo netstat -pan --inet"
 alias duf="sudo du -sh * | sort -rh"
 alias diff="diff --color"
 alias gpg="gpg2"
-alias img="cacaview"
+alias dl="curl -LO"
 alias inst="sudo apt install"
 alias l="ls -CFh"
 alias la="ls -Ah"
@@ -118,7 +118,7 @@ function biggest() {
 function json_prettyprint() {
   FILENAME="${1%.*}"
   EXTENSION="${1##*.}"
-  cat "${1}" | python -mjson.tool > "${FILENAME}_beautified.${EXTENSION}"
+  cat "${1}" | python -mjson.tool
 }
 
 function debchangelog() {
