@@ -40,8 +40,8 @@ alias xclip="xclip -selection c"
 alias upgrade-all="upd && upgr; \
                    sudo apt-get autoremove; \
                    ~/bin/nvm-update.sh; \
-                   nvm i 15; \
-                   npm i -g npm yarn generate-changelog electron-info; \
+                   nvm i 16; \
+                   npm i -g npm yarn generate-changelog electron-info wire-cli; \
                    exercism upgrade; \
                    rustup update; \
                    g self-upgrade && \
@@ -138,12 +138,13 @@ function gpushb() {
 
 function gdel() {
   REMOTE="origin"
-  BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-  if [ "${BRANCH}" == "main" ]; then
-    echo "Already on main branch."
+  DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2> /dev/null | sed 's@^refs/remotes/origin/@@')"
+  CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  if [ "${CURRENT_BRANCH}" == "${DEFAULT_BRANCH}" ]; then
+    echo "Already on default branch "${DEFAULT_BRANCH}"."
   else
-    git checkout main
-    git branch -D "${BRANCH}"
+    git checkout "${DEFAULT_BRANCH}"
+    git branch -D "${CURRENT_BRANCH}"
     git pull --prune
   fi
 }
