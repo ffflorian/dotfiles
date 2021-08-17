@@ -47,7 +47,7 @@ alias upgrade-all="upd && upgr; \
                    g self-upgrade && \
                    g install latest && \
                    g prune; \
-                   go get -u -v github.com/ffflorian/go-tools/gh-open; \
+                   go install -u -v github.com/ffflorian/go-tools/gh-open@latest; \
                    yt --update"
 alias yt="youtube-dl \
           --retries 1 \
