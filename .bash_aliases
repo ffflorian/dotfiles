@@ -23,7 +23,7 @@ alias temp="watch -n 1 -d sensors"
 alias upd="sudo apt update -qq"
 alias upgr="sudo apt upgrade"
 alias upgrd="sudo apt dist-upgrade"
-alias google-chrome-unsafe="google-chrome --disable-web-security --disable-features=SameSiteByDefaultCookies --user-data-dir=\"/tmp/ChromeDevSession\""
+alias google-chrome-unsafe="google-chrome --disable-web-security --disable-features=SameSiteByDefaultCookies --no-default-browser-check --no-first-run --user-data-dir=\"/tmp/ChromeDevSession\""
 alias wire-upgrade="cd ~/src/wire/wire-desktop && \
                     git add . && \
                     git reset --hard && \
