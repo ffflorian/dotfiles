@@ -24,24 +24,13 @@ alias upd="sudo apt update -qq"
 alias upgr="sudo apt upgrade"
 alias upgrd="sudo apt dist-upgrade"
 alias google-chrome-unsafe="google-chrome --disable-web-security --disable-features=SameSiteByDefaultCookies --no-default-browser-check --no-first-run --user-data-dir=\"/tmp/ChromeDevSession\""
-alias wire-upgrade="cd ~/src/wire/wire-desktop && \
-                    git add . && \
-                    git reset --hard && \
-                    git checkout dev && \
-                    pull && \
-                    rm -rf ./wrap/ && \
-                    yarn && \
-                    LINUX_TARGET=deb yarn build:linux:internal && \
-                    ga && \
-                    git reset --hard && \
-                    sudo dpkg -i wrap/dist/WireInternal*.deb"
 alias wp="ps aux | grep -v grep | grep"
 alias xclip="xclip -selection c"
 alias upgrade-all="upd && upgr; \
                    sudo apt-get autoremove; \
                    ~/bin/nvm-update.sh; \
                    nvm i 16; \
-                   npm i -g npm yarn generate-changelog electron-info wire-cli; \
+                   npm i -g npm yarn generate-changelog electron-info; \
                    exercism upgrade; \
                    rustup update; \
                    g self-upgrade && \
@@ -83,7 +72,6 @@ alias grh="gr --hard"
 alias grh1="grh HEAD~1"
 alias gr1="gr HEAD~1"
 alias gt="git tag -a -s -m"
-alias gwork="git config user.name \"Florian Imdahl\" && git config user.email \"florian@wire.com\" && git config user.signingkey \"7B31D2BD\""
 alias merge="gm"
 alias pull="gpull"
 alias push="gpush"
