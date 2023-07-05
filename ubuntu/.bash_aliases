@@ -79,6 +79,11 @@ alias pushb="gpushb"
 alias prune="gprune"
 alias p="pull"
 alias pp="pull --prune"
+alias gsu="git submodule init && git submodule update"
+
+function gl-open() {
+  glab mr view -w || glab repo view "$(git remote get-url origin)" -w
+}
 
 function wttr() {
   curl -4 -s http://wttr.in/Berlin #| head -7 | tail -5"

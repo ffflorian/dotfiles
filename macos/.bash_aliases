@@ -63,6 +63,7 @@ alias pp="LANG=en_US git pull --no-verify --prune"
 alias pbc="gpushb -o merge_request.create"
 alias pushbc="gpushb -o merge_request.create"
 alias gh-open="gh pr view -w || gh repo view -w || gh-open"
+alias gsu="git submodule init && git submodule update"
 
 function gl-open() {
   glab mr view -w || glab repo view "$(git remote get-url origin)" -w
@@ -91,7 +92,7 @@ function gpushb() {
 
 function gdel() {
   REMOTE="origin"
-  DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2> /dev/null | sed 's@^refs/remotes/origin/@@')"
+  DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')"
   CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
   if [ "${CURRENT_BRANCH}" == "${DEFAULT_BRANCH}" ]; then
     echo "Already on default branch \"${DEFAULT_BRANCH}\"."
