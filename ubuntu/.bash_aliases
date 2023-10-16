@@ -101,7 +101,7 @@ function gupdate() {
 }
 
 function biggest() {
-  if [[ $# -eq 0 ]] ; then
+  if [[ $# -eq 0 ]]; then
     du -hd1 | sort -rh | tail -n +2
   else
     du -hd1 | sort -rh | tail -n +2 | head -n${1}
@@ -123,15 +123,15 @@ function gpushb() {
   #if [[ "${REMOTE}" =~ (\ ) ]]; then
   #  echo "Multiple remotes."
   #else
-    REMOTE="origin"
-    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-    git push --set-upstream "${REMOTE}" "${BRANCH}" "$@"
+  REMOTE="origin"
+  BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  git push --set-upstream "${REMOTE}" "${BRANCH}" "$@"
   #fi
 }
 
 function gdel() {
   REMOTE="origin"
-  DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2> /dev/null | sed 's@^refs/remotes/origin/@@')"
+  DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')"
   CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
   if [ "${CURRENT_BRANCH}" == "${DEFAULT_BRANCH}" ]; then
     echo "Already on default branch "${DEFAULT_BRANCH}"."
@@ -145,11 +145,11 @@ function gdel() {
 function matrix() {
   echo -e "\e[1;40m"
   clear
-  while :;
-    do echo ${LINES} ${COLUMNS} $(( ${RANDOM} % ${COLUMNS})) $(( ${RANDOM} % 72 ));
-    sleep 0.05;
-#  done | gawk '{ letters="ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ"; c=$4; letter=substr(letters,c,1);a[$3]=0; for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s", o, x, letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H", a[x], x, letter; if (a[x] >= $1) { a[x]=0; } }}'
-   done | gawk '{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
+  while :; do
+    echo ${LINES} ${COLUMNS} $((${RANDOM} % ${COLUMNS})) $((${RANDOM} % 72))
+    sleep 0.05
+    #  done | gawk '{ letters="ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ"; c=$4; letter=substr(letters,c,1);a[$3]=0; for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s", o, x, letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H", a[x], x, letter; if (a[x] >= $1) { a[x]=0; } }}'
+  done | gawk '{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
 
 function nvm() {
@@ -172,27 +172,27 @@ function =() {
 }
 
 # wrapper for easy extraction of compressed files
-function extract () {
-  if [ -f ${1} ] ; then
+function extract() {
+  if [ -f ${1} ]; then
     case ${1} in
-        *.7z)        7z x ${1}        ;;
-        *.apk)       unzip ${1}       ;;
-        *.bz2)       bunzip2 ${1}     ;;
-        *.epub)      unzip ${1}       ;;
-        *.gz)        gunzip ${1}      ;;
-        *.jar)       unzip ${1}       ;;
-        *.rar)       unrar e ${1}     ;;
-        *.tar)       tar xvf ${1}     ;;
-        *.tar.bz2)   tar xvjf ${1}    ;;
-        *.tar.gz)    tar xvzf ${1}    ;;
-        *.tar.xz)    tar xvJf ${1}    ;;
-        *.tbz2)      tar xvjf ${1}    ;;
-        *.tgz)       tar xvzf ${1}    ;;
-        *.war)       unzip ${1}       ;;
-        *.xpi)       unzip ${1}       ;;
-        *.Z)         uncompress ${1}  ;;
-        *.zip)       unzip ${1}       ;;
-        *)           echo "don't know how to extract '${1}'..." ;;
+    *.7z) 7z x ${1} ;;
+    *.apk) unzip ${1} ;;
+    *.bz2) bunzip2 ${1} ;;
+    *.epub) unzip ${1} ;;
+    *.gz) gunzip ${1} ;;
+    *.jar) unzip ${1} ;;
+    *.rar) unrar e ${1} ;;
+    *.tar) tar xvf ${1} ;;
+    *.tar.bz2) tar xvjf ${1} ;;
+    *.tar.gz) tar xvzf ${1} ;;
+    *.tar.xz) tar xvJf ${1} ;;
+    *.tbz2) tar xvjf ${1} ;;
+    *.tgz) tar xvzf ${1} ;;
+    *.war) unzip ${1} ;;
+    *.xpi) unzip ${1} ;;
+    *.Z) uncompress ${1} ;;
+    *.zip) unzip ${1} ;;
+    *) echo "don't know how to extract '${1}'..." ;;
     esac
   else
     echo "'${1}' is not a valid archive"

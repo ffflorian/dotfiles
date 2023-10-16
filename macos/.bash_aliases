@@ -62,11 +62,28 @@ alias prune="LANG=en_US git prune && git remote prune origin"
 alias pp="LANG=en_US git pull --no-verify --prune"
 alias pbc="gpushb -o merge_request.create"
 alias pushbc="gpushb -o merge_request.create"
-alias gh-open="gh pr view -w || gh repo view -w || gh-open"
 alias gsu="git submodule init && git submodule update"
 
+function wttr() {
+  curl -4 -s http://wttr.in/Berlin #| head -7 | tail -5"
+}
+
+function gh-open() {
+  CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  if [[ "${CURRENT_BRANCH}" == "main" ]]; then
+    gh repo view -w
+  else
+    gh pr view -w || gh repo view -w || gh-open
+  fi
+}
+
 function gl-open() {
-  glab mr view -w || glab repo view "$(git remote get-url origin)" -w
+  CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  if [[ "${CURRENT_BRANCH}" == "main" ]]; then
+    glab repo view "$(git remote get-url origin)" -w
+  else
+    glab mr view -w || glab repo view "$(git remote get-url origin)" -w
+  fi
 }
 
 function gupdate() {
