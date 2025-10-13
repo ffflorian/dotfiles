@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v5
       - name: Mirror + trigger CI
         uses: SvanBoxel/gitlab-mirror-and-ci-action@f80bc118403c3f3f5b8fe1e6417b7ac43771d6fa
         with:
