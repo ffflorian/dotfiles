@@ -26,7 +26,7 @@ alias upgrade-all="brew upgrade; \
                    g install latest; \
                    g prune; \
                    rustup update; \
-                   n i 24; \
+                   nvm install --lts; \
                    npm install --registry https://registry.npmjs.org --global npm yarn http-server eslint @ffflorian/gh-open"
 alias myip="curl http://checkip.amazonaws.com"
 alias uuidgen="uuidgen | tr A-F a-f"
@@ -186,4 +186,12 @@ function update-all-non-main-repos() {
     fi
     cd - > /dev/null
   done
+}
+
+function nvm-upgrade() {
+  (
+    cd "$NVM_DIR"
+    git fetch --tags origin
+    git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+  ) && \. "$NVM_DIR/nvm.sh"
 }
