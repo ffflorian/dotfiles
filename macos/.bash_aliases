@@ -22,17 +22,17 @@ alias rg="rg --ignore-case"
 alias python="python3"
 alias pip="pip3"
 alias upgrade-all="brew upgrade; \
-                   g self-upgrade; \
-                   g install latest; \
-                   g prune; \
+                   brew upgrade --cask --greedy; \
                    rustup update; \
+                   npm install --registry https://registry.npmjs.org --global npm yarn http-server eslint @ffflorian/gh-open; \
                    nvm install --lts; \
                    npm install --registry https://registry.npmjs.org --global npm yarn http-server eslint @ffflorian/gh-open"
-alias myip="curl http://checkip.amazonaws.com"
+alias myip="curl https://checkip.amazonaws.com"
 alias uuidgen="uuidgen | tr A-F a-f"
 alias yt="yt-dlp --retries 1 --no-call-home --user-agent \"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36\""
 
 # use gnu utils
+
 alias grep="ggrep"
 alias find="gfind"
 alias sed="gsed"
@@ -145,7 +145,7 @@ function gdel() {
     return 0
   fi
 
-  if [[ "$(glab mr view -F json | jq '.state == "merged"')" != "true" ]]; then
+  if [[ ! "$(git remote -v)" =~ "github.com" ]] && [[ "$(glab mr view -F json | jq '.state == "merged"')" != "true" ]]; then
     read -p "MR is not merged yet. Do you want to delete anyway? [Y/n]: " CONFIRM
     if [[ "${CONFIRM}" =~ ^([nN][oO]|[nN])$ ]]; then
         echo "Not deleting branch."
@@ -190,8 +190,15 @@ function update-all-non-main-repos() {
 
 function nvm-upgrade() {
   (
-    cd "$NVM_DIR"
+    cd "${NVM_DIR}"
     git fetch --tags origin
     git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-  ) && \. "$NVM_DIR/nvm.sh"
+  ) && \. "${NVM_DIR}/nvm.sh"
 }
+
+function nvm() {
+  [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
+  [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
+  nvm "$@"
+}
+
