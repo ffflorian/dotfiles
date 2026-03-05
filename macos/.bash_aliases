@@ -8,7 +8,6 @@ alias dl="curl -LO"
 alias l="ls -CFh"
 alias la="ls -Ah"
 alias ll="ls -AhlF"
-alias n="nvm"
 alias google-chrome-unsafe="open -a 'Google Chrome.app' \
                             --args \
                             --disable-web-security \
@@ -24,8 +23,6 @@ alias pip="pip3"
 alias upgrade-all="brew upgrade; \
                    brew upgrade --cask --greedy; \
                    rustup update; \
-                   npm install --registry https://registry.npmjs.org --global npm yarn http-server eslint @ffflorian/gh-open; \
-                   nvm install --lts; \
                    npm install --registry https://registry.npmjs.org --global npm yarn http-server eslint @ffflorian/gh-open"
 alias myip="curl https://checkip.amazonaws.com"
 alias uuidgen="uuidgen | tr A-F a-f"
@@ -132,7 +129,7 @@ function gupdate() {
 }
 
 function biggest() {
-  [ -z "$1" ] && du -hsx * | sort -rh || du -hsx * | sort -rh | head -n $1
+  [ -z "$1" ] && du -hsx * 2>/dev/null | sort -rh || du -hsx * 2>/dev/null | sort -rh | head -n $1
 }
 
 function gdel() {
@@ -187,18 +184,3 @@ function update-all-non-main-repos() {
     cd - > /dev/null
   done
 }
-
-function nvm-upgrade() {
-  (
-    cd "${NVM_DIR}"
-    git fetch --tags origin
-    git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-  ) && \. "${NVM_DIR}/nvm.sh"
-}
-
-function nvm() {
-  [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
-  [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
-  nvm "$@"
-}
-
