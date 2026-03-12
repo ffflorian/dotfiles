@@ -74,6 +74,9 @@ export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 # gfind
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 
+# gawk
+export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
+
 # Java
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
