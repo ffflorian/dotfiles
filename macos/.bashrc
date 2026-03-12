@@ -40,7 +40,7 @@ parse_git_branch() {
 
 # PS_EXIT_CODE="\$([ \$? != 0 ] && echo '\e[01;31m!\e[00m ' || echo '. ')"
 PS_TIME="\[\033[01;37m\]\A"
-PS_DIR="\[\033[01;34m\]\w"
+PS_DIR="\[\033[01;36m\]\w"
 PS_GIT="\[\033[33m\]\$(parse_git_branch)\[\033[00m\]"
 PS1="${PS_TIME} ${PS_DIR}${PS_GIT} \$ "
 
