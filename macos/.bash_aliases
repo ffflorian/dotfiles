@@ -30,8 +30,9 @@ alias yt="yt-dlp --retries 1 --no-call-home --user-agent \"Mozilla/5.0 (Windows 
 
 # use gnu utils
 
-alias grep="ggrep"
 alias find="gfind"
+alias grep="ggrep"
+alias awk="gawk"
 alias sed="gsed"
 alias xargs="gxargs"
 alias date="gdate"

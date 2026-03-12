@@ -44,7 +44,7 @@ PS_DIR="\[\033[01;34m\]\w"
 PS_GIT="\[\033[33m\]\$(parse_git_branch)\[\033[00m\]"
 PS1="${PS_TIME} ${PS_DIR}${PS_GIT} \$ "
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv bash)"
 
 if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
   . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
@@ -61,10 +61,18 @@ export PATH="/usr/local/bin:${PATH}"
 export PATH="/${HOME}/bin:${PATH}"
 export PATH="/${HOME}/.yarn/bin:${PATH}"
 export PATH="${HOMEBREW_PREFIX}/bin:${PATH}"
+
+# curl
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
 # ggrep
 export PATH="${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin:$PATH"
+
+# gnutar
+export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+
+# gfind
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 
 # Java
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
