@@ -23,3 +23,5 @@
     patch = !git --no-pager diff --no-color
 [pull]
     rebase = false
+[push]
+	autoSetupRemote = true
