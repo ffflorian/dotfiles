@@ -84,6 +84,9 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="$PATH:/${HOME}/.local/bin"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
+# sops
+export SOPS_AGE_KEY_FILE="~/Library/ApplicationSupport/sops/age/keys.txt"
+
 # glab
 export GLAB_SEND_TELEMETRY="false"
 

@@ -146,8 +146,7 @@ function gdel() {
   if [[ ! "$(git remote -v)" =~ "github.com" ]] && [[ "$(glab mr view -F json | jq '.state == "merged"')" != "true" ]]; then
     read -p "MR is not merged yet. Do you want to delete anyway? [Y/n]: " CONFIRM
     if [[ "${CONFIRM}" =~ ^([nN][oO]|[nN])$ ]]; then
-        echo "Not deleting branch."
-        return 1
+        return 0
     fi
   fi
 
