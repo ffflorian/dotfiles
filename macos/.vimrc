@@ -16,7 +16,7 @@ set showmode            " Display current editing mode
 set title               " Make the window title reflect the file being edited
 
 syntax on
-:color slate
+":color slate
 
 " Remap :X to :x
 cnoremap <expr> X (getcmdtype() is# ':' && empty(getcmdline())) ? 'x' : 'X'
