@@ -1,5 +1,3 @@
-[alias]
-    patch = !git --no-pager diff --no-color
 [color]
     ui = true
 [color "diff"]
@@ -13,10 +11,12 @@
     autocrlf = false
     eol = lf
     excludesfile = /home/florian/.gitignore_global
-    pager = diff-so-fancy | less --tabs=4 -RFX
     whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
+    pager = diff-so-fancy | less --tabs=4 -RF
 [init]
     defaultBranch = main
+[interactive]
+    diffFilter = diff-so-fancy --patch
 [pull]
     rebase = false
 [push]
