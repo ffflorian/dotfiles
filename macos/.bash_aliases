@@ -45,8 +45,8 @@ alias ga="git add -A"
 alias gagd="git add -A && git diff --cached"
 alias gedit="git commit -S --amend"
 alias gamend="git commit -S --amend --no-edit"
+alias gedit="git commit -S --amend"
 alias gb="git checkout -b"
-alias gg="git log"
 alias gs="git status"
 alias gbranch="git rev-parse --abbrev-ref HEAD"
 alias gc="git commit -S -m"
@@ -140,7 +140,7 @@ function gdel() {
 
   if [ "${CURRENT_BRANCH}" == "${DEFAULT_BRANCH}" ]; then
     echo "Already on default branch \"${DEFAULT_BRANCH}\"."
-    return 0
+    return 1
   fi
 
   if [[ ! "$(git remote -v)" =~ "github.com" ]] && [[ "$(glab mr view -F json | jq '.state == "merged"')" != "true" ]]; then

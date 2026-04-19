@@ -85,7 +85,6 @@ export PATH="$PATH:/${HOME}/.local/bin"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # sops
-export SOPS_AGE_KEY_FILE="~/Library/ApplicationSupport/sops/age/keys.txt"
 
 # glab
 export GLAB_SEND_TELEMETRY="false"
@@ -93,10 +92,10 @@ export GLAB_SEND_TELEMETRY="false"
 # Homebrew
 export HOMEBREW_NO_ENV_HINTS=1
 
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+  . "${HOME}/.bash_aliases"
 fi
 
-if [ -f ~/.bash_aliases_private ]; then
-  . ~/.bash_aliases_private
+if [ -f "${HOME}/.bash_aliases_private" ]; then
+  . "${HOME}/.bash_aliases_private"
 fi
