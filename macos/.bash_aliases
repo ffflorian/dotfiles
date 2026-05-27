@@ -119,14 +119,9 @@ function gmain() {
 }
 
 function gupdate() {
-  COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
-  git reset HEAD~1
-  git add .
-  git stash
-  git pull
-  git stash pop
-  git add .
-  git commit -S -m "${COMMIT_MESSAGE}"
+  CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  git fetch origin "${CURRENT_BRANCH}"
+  git rebase "origin/${CURRENT_BRANCH}"
 }
 
 function biggest() {
