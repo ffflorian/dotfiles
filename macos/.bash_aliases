@@ -23,7 +23,7 @@ alias pip="pip3"
 alias upgrade-all="brew upgrade; \
                    brew upgrade --cask --greedy; \
                    rustup update; \
-                   npm install --registry https://registry.npmjs.org --global npm yarn http-server eslint @ffflorian/gh-open"
+                   npm install --registry https://registry.npmjs.org --global @ffflorian/gh-open"
 alias myip="curl https://checkip.amazonaws.com"
 alias uuidgen="uuidgen | tr A-F a-f"
 alias yt="yt-dlp --retries 1 --no-call-home --user-agent \"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36\""
