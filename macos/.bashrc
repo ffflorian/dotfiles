@@ -99,3 +99,5 @@ fi
 if [ -f "${HOME}/.bash_aliases_private" ]; then
   . "${HOME}/.bash_aliases_private"
 fi
+
+export SSH_AUTH_SOCK=/Users/florian/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh

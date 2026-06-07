@@ -76,7 +76,15 @@ alias gsu="git submodule init && git submodule update"
 alias create-mr="glab mr create --assignee florianimdahl --fill --web"
 
 function docker-run() {
-  docker run --rm -it $(docker build .)
+  DOCKER_IMAGE="${1:-.}"
+
+  if [ "${DOCKER_IMAGE}" == "." ] || [ -f "${DOCKER_IMAGE}" ]; then
+    # local Docker image
+    echo "Building Docker image \"${DOCKER_IMAGE}\" ..."
+    DOCKER_IMAGE=$(docker build --build-context 'path=.' --no-cache --quiet "${DOCKER_IMAGE}")
+  fi
+
+  docker run --rm -it "${DOCKER_IMAGE}"
 }
 
 function wttr() {
