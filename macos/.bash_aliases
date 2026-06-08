@@ -16,6 +16,7 @@ alias google-chrome-unsafe="open -a 'Google Chrome.app' \
                             --no-first-run \
                             --user-data-dir='/tmp/ChromeDevSession'"
 alias zarn="yarn"
+alias yarn-lock="yarn --mode=update-lockfile"
 alias reload="source ~/.bash_profile"
 alias rg="rg --ignore-case"
 alias python="python3"
