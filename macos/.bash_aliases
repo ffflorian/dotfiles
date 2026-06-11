@@ -85,7 +85,7 @@ function docker-run() {
     DOCKER_IMAGE=$(docker build --build-context 'path=.' --no-cache --quiet "${DOCKER_IMAGE}")
   fi
 
-  docker run --rm -it "${DOCKER_IMAGE}"
+  docker run --rm -it "${DOCKER_IMAGE}" "$@"
 }
 
 function wttr() {
@@ -113,7 +113,7 @@ function gl-open() {
   DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')"
   CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
   if [[ "${CURRENT_BRANCH}" == "${DEFAULT_BRANCH}" ]]; then
-    glab repo view "$(git remote get-url origin)" -w
+    glab repo view -w
   else
     glab mr view -w || glab repo view "$(git remote get-url origin)" -w
   fi
