@@ -37,6 +37,7 @@ alias awk="gawk"
 alias sed="gsed"
 alias xargs="gxargs"
 alias date="gdate"
+alias realpath="grealpath"
 
 # git aliases
 
@@ -187,4 +188,19 @@ function update-all-non-main-repos() {
     fi
     cd - > /dev/null
   done
+}
+
+function find-up() {
+  dir="${PWD}"
+  found=""
+
+  while [ -z "${found}" ] && [ "${dir}" != "/" ]; do
+    if [ -r "${dir}/$1" ]; then
+      realpath "${result}"
+      return 0
+    fi
+    dir="$(realpath "${dir}/..")"
+  done
+
+  return 1
 }

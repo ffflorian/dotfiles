@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=2000
-HISTFILESIZE=5000
+HISTSIZE=4000
+HISTFILESIZE=10000
 
 export EDITOR=vim
 export LANG=en_US.UTF-8
@@ -92,6 +92,7 @@ export GLAB_SEND_TELEMETRY="false"
 # Homebrew
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ASK=1
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 if [ -f "${HOME}/.bash_aliases" ]; then
