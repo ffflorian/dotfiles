@@ -47,7 +47,6 @@ alias ga="git add -A"
 alias gagd="git add -A && git diff --cached"
 alias gedit="git commit -S --amend"
 alias gamend="git commit -S --amend --no-edit"
-alias gedit="git commit -S --amend"
 alias gb="git checkout -b"
 alias gs="git status"
 alias gbranch="git rev-parse --abbrev-ref HEAD"
@@ -191,32 +190,21 @@ function update-all-non-main-repos() {
 }
 
 function find-up() {
-  dir="${PWD}"
-  found=""
+  if [ -z "$1" ]; then
+    echo "Usage: find-up <filename>" >&2
+    return 2
+  fi
 
-  while [ -z "${found}" ] && [ "${dir}" != "/" ]; do
-    if [ -r "${dir}/$1" ]; then
-      realpath "${result}"
+  local dir="${PWD}"
+
+  while true; do
+    if [ -e "${dir}/$1" ]; then
+      realpath "${dir}/$1"
       return 0
     fi
+    [ "${dir}" = "/" ] && break
     dir="$(realpath "${dir}/..")"
   done
 
   return 1
-}
-
-function c4p() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: $0 <project_id>"
-    return 1
-  fi
-
-  project_id=$1
-
-  # Compute stable slot based on project_id
-  day=$(( (project_id % 28) + 1 ))
-  minute=$(( project_id % 60 ))
-  hour=2  # fixed hour (adjust if you prefer another time)
-
-  echo "${minute} ${hour} ${day} * *"
 }

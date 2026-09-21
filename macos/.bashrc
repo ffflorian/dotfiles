@@ -57,6 +57,15 @@ fi
 source "${__brew_env_cache}"
 unset __brew_env_cache
 
+# kitty sets TERM=xterm-kitty, which most remote hosts don't have in their
+# terminfo (breaks vim, screen colors, key handling over ssh). Hand remote
+# sessions a universally-known TERM instead, without changing the local one.
+if [ "$TERM" = "xterm-kitty" ]; then
+  ssh() {
+    TERM=xterm-256color command ssh "$@"
+  }
+fi
+
 # bash completion
 if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
   . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
@@ -66,12 +75,11 @@ fi
 export GOROOT="/opt/homebrew/opt/go/libexec"
 export GOPATH="${HOME}/go"
 
-export PATH="${GOPATH}:${PATH}"
 export PATH="${GOPATH}/bin:${PATH}"
 export PATH="${GOROOT}:${PATH}"
 export PATH="/usr/local/bin:${PATH}"
-export PATH="/${HOME}/bin:${PATH}"
-export PATH="/${HOME}/.yarn/bin:${PATH}"
+export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/.yarn/bin:${PATH}"
 export PATH="${HOMEBREW_PREFIX}/bin:${PATH}"
 
 # curl
@@ -106,15 +114,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ASK=1
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-
-# kitty sets TERM=xterm-kitty, which most remote hosts don't have in their
-# terminfo (breaks vim, screen colors, key handling over ssh). Hand remote
-# sessions a universally-known TERM instead, without changing the local one.
-if [ "$TERM" = "xterm-kitty" ]; then
-  ssh() {
-    TERM=xterm-256color command ssh "$@"
-  }
-fi
+export SSH_AUTH_SOCK="/Users/florian/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
 
 if [ -f "${HOME}/.bash_aliases" ]; then
   . "${HOME}/.bash_aliases"
@@ -124,4 +124,3 @@ if [ -f "${HOME}/.bash_aliases_private" ]; then
   . "${HOME}/.bash_aliases_private"
 fi
 
-export SSH_AUTH_SOCK=/Users/florian/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
