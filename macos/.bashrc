@@ -35,7 +35,9 @@ shopt -s checkwinsize
 shopt -s globstar
 
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  local branch
+  branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) || return
+  printf ' (%s)' "$branch"
 }
 
 # PS_EXIT_CODE="\$([ \$? != 0 ] && echo '\e[01;31m!\e[00m ' || echo '. ')"
@@ -44,8 +46,18 @@ PS_DIR="\[\033[01;36m\]\w"
 PS_GIT="\[\033[33m\]\$(parse_git_branch)\[\033[00m\]"
 PS1="${PS_TIME} ${PS_DIR}${PS_GIT} \$ "
 
-eval "$(/opt/homebrew/bin/brew shellenv bash)"
+# Cache `brew shellenv` output — it's static, so avoid forking Ruby every shell.
+# Regenerate only when the cache is missing or older than the brew binary
+# (e.g. after a Homebrew update).
+__brew_env_cache="${HOME}/.cache/brew_shellenv.bash"
+if [[ ! -r "${__brew_env_cache}" || /opt/homebrew/bin/brew -nt "${__brew_env_cache}" ]]; then
+  mkdir -p "${HOME}/.cache"
+  /opt/homebrew/bin/brew shellenv bash > "${__brew_env_cache}"
+fi
+source "${__brew_env_cache}"
+unset __brew_env_cache
 
+# bash completion
 if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
   . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 fi
@@ -94,6 +106,15 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ASK=1
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
+# kitty sets TERM=xterm-kitty, which most remote hosts don't have in their
+# terminfo (breaks vim, screen colors, key handling over ssh). Hand remote
+# sessions a universally-known TERM instead, without changing the local one.
+if [ "$TERM" = "xterm-kitty" ]; then
+  ssh() {
+    TERM=xterm-256color command ssh "$@"
+  }
+fi
 
 if [ -f "${HOME}/.bash_aliases" ]; then
   . "${HOME}/.bash_aliases"

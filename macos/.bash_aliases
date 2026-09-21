@@ -21,8 +21,8 @@ alias reload="source ~/.bash_profile"
 alias rg="rg --ignore-case"
 alias python="python3"
 alias pip="pip3"
-alias upgrade-all="brew upgrade; \
-                   brew upgrade --cask --greedy; \
+alias upgrade-all="brew upgrade --greedy; \
+                   HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade --cask --greedy; \
                    rustup update; \
                    npm install --registry https://registry.npmjs.org --global @ffflorian/gh-open"
 alias myip="curl https://checkip.amazonaws.com"
@@ -116,7 +116,7 @@ function gl-open() {
   if [[ "${CURRENT_BRANCH}" == "${DEFAULT_BRANCH}" ]]; then
     glab repo view -w
   else
-    glab mr view -w || glab repo view "$(git remote get-url origin)" -w
+    glab mr view -w || glab repo view -b "${CURRENT_BRANCH}" -w
   fi
 }
 
@@ -203,4 +203,20 @@ function find-up() {
   done
 
   return 1
+}
+
+function c4p() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: $0 <project_id>"
+    return 1
+  fi
+
+  project_id=$1
+
+  # Compute stable slot based on project_id
+  day=$(( (project_id % 28) + 1 ))
+  minute=$(( project_id % 60 ))
+  hour=2  # fixed hour (adjust if you prefer another time)
+
+  echo "${minute} ${hour} ${day} * *"
 }
