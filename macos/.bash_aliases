@@ -147,8 +147,8 @@ function gdel() {
     return 1
   fi
 
-  if [[ ! "$(git remote -v)" =~ "github.com" ]] && [[ "$(glab mr view -F json | jq '.state == "merged"')" != "true" ]]; then
-    read -p "MR is not merged yet. Do you want to delete anyway? [Y/n]: " CONFIRM
+  if [[ ! "$(git remote -v)" =~ "github.com" ]] && [[ "$(glab mr view -F json | jq '.state == "opened"')" != "false" ]]; then
+    read -p "MR is still open. Do you want to delete your local changes? [Y/n]: " CONFIRM
     if [[ "${CONFIRM}" =~ ^([nN][oO]|[nN])$ ]]; then
         return 0
     fi
